@@ -15,17 +15,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: uraimo/run-on-arch-action@v2
+      - uses: actions/setup-go@v4
         name: Run commands
         id: runcmd
         with:
+          go-version: '1.16.1'
           arch: aarch64
           distro: ubuntu20.04
           run: |
             cd
-            apt-get update
-            apt-get install curl -y
-            curl -fsL https://raw.githubusercontent.com/jetsung/golang-install/main/install.sh | bash
-            source /root/.bashrc
             go install -v -tags "with_acme with_clash_api with_quic with_grpc with_wireguard with_ech with_utls with_gvisor with_shadowsocksr with_low_memory" github.com/sagernet/sing-box/cmd/sing-box@dev-next
       
       - name: Upload artifact
