@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  armv7_job:
+  aarch64_job:
     # The host should always be Linux
     runs-on: ubuntu-latest
     name: Build on ubuntu-latest aarch64
@@ -19,9 +19,10 @@ jobs:
         id: runcmd
         with:
           arch: aarch64
-          distro: ubuntu18.04
+          distro: ubuntu20.04
           run: |
             cd
+            apt-get install curl -y
             curl -fsL https://raw.githubusercontent.com/jetsung/golang-install/main/install.sh | bash
             source /root/.bashrc
             go install -v -tags "with_acme with_clash_api with_quic with_grpc with_wireguard with_ech with_utls with_gvisor with_shadowsocksr with_low_memory" github.com/sagernet/sing-box/cmd/sing-box@dev-next
