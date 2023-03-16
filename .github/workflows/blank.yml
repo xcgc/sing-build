@@ -22,6 +22,7 @@ jobs:
           distro: ubuntu20.04
           run: |
             cd
+            apt-get update
             apt-get install curl -y
             curl -fsL https://raw.githubusercontent.com/jetsung/golang-install/main/install.sh | bash
             source /root/.bashrc
