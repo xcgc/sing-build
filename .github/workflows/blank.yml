@@ -20,15 +20,11 @@ jobs:
         with:
           arch: aarch64
           distro: ubuntu18.04
-
-
-      - name: Build
-        # Build the sing-box binary
-        run: |
-          cd
-          curl -fsL https://raw.githubusercontent.com/jetsung/golang-install/main/install.sh | bash
-          source /root/.bashrc
-          go install -v -tags "with_acme with_clash_api with_quic with_grpc with_wireguard with_ech with_utls with_gvisor with_shadowsocksr with_low_memory" github.com/sagernet/sing-box/cmd/sing-box@dev-next
+          run: |
+            cd
+            curl -fsL https://raw.githubusercontent.com/jetsung/golang-install/main/install.sh | bash
+            source /root/.bashrc
+            go install -v -tags "with_acme with_clash_api with_quic with_grpc with_wireguard with_ech with_utls with_gvisor with_shadowsocksr with_low_memory" github.com/sagernet/sing-box/cmd/sing-box@dev-next
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
